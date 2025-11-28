@@ -17,8 +17,13 @@ static constexpr typeof(Serial)& serial_ = Serial;
 static void setupSomo1() {
   delay(100);
 
+  // Note that these are example calibration values. They probably need to be changed.
+  // You may run this example sketch and watch on the serial monitor what raw values
+  // your sensor provides for wet and dry soil humidity, and change the calibration
+  // accordingly.
   somo1.setHumidityRawFor100Percent(1990);
   somo1.setHumidityRawFor0Percent(2480);
+
   somo1.begin(Somo1ELV::TEMPERATURE_HIGH_PRECISION);
   delay(800);
 

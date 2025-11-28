@@ -1,0 +1,50 @@
+#######################################
+# Syntax Coloring Map For ExampleLibrary
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+Somo1ELV	      KEYWORD1
+SHT4X_PRECISION   KEYWORD1
+humidityPercent_t KEYWORD1
+temperatureDegC_t KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+begin		        			KEYWORD2
+isTemperatureSensorAvailable    KEYWORD2
+isHumiditySensorAvailable     	KEYWORD2
+getSht4xSerialNumber	        KEYWORD2
+
+setHumidityRawFor0Percent 		KEYWORD2
+setHumidityRawFor100Percent     KEYWORD2
+pickHumidityRawFor0Percent  	KEYWORD2
+pickHumidityRawFor100Percent    KEYWORD2
+measureSoilHumidity    			KEYWORD2
+measureSoilTemperatureDegC 		KEYWORD2
+
+enableFdc2x1xSleepMode  		KEYWORD2
+disableFdc2x1xSleepMode 		KEYWORD2
+
+#######################################
+# Instances (KEYWORD2)
+#######################################
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+
+TEMPERATRUR_SENSOR_NOT_AVAILABLE LITERAL1
+HUMIDITY_SENSOR_NOT_AVAILABLE    LITERAL1
+
+TEMPERATRUR_MEASUREMENT_FAILED   LITERAL1
+HUMIDITY_MEASUREMENT_FAILED      LITERAL1
+NO_ERROR                         LITERAL1
+
+TEMPERATURE_LOW_PRECISION        LITERAL1
+TEMPERATURE_MEDIUM_PRECISION     LITERAL1
+TEMPERATURE_HIGH_PRECISION       LITERAL1
