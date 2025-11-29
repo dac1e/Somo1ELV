@@ -83,7 +83,7 @@ void loop()
 {
   {
     humidityPercent_t soilHumidityPercent;
-    uint16_t soilHumidityRaw;
+    uint32_t soilHumidityRaw;
     Somo1ELV::ERROR err = somo1.measureSoilHumidity(soilHumidityPercent, &soilHumidityRaw);
     printHumidityResult(err, soilHumidityPercent, soilHumidityRaw);
   }

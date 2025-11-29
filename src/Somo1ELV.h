@@ -94,7 +94,7 @@ public:
   void pickHumidityRawFor100Percent(int16_t rawValue);
 
   // soil humidity might become negative upon wrong calibration data.
-  ERROR measureSoilHumidity(humidityPercent_t& soilHumidityPercent, uint16_t* soilHumidityRaw = nullptr);
+  ERROR measureSoilHumidity(humidityPercent_t& soilHumidityPercent, uint32_t* soilHumidityRaw = nullptr);
 
   ERROR measureSoilTemperatureDegC(temperatureDegC_t& soilTemperatureDegC);
 
@@ -110,7 +110,7 @@ public:
 
 private:
   ERROR measureSoilTemperature_raw(sht4xTicks_t& soilTemperatureSht4xTicks);
-  ERROR measureSoilHumidity_raw(uint16_t& soilHumidityRaw);
+  ERROR measureSoilHumidity_raw(uint32_t& soilHumidityRaw);
 
   struct soil_humidity_calibration {
     int16_t soilHumidity100percent;

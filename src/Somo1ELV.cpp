@@ -56,7 +56,7 @@ uint32_t Somo1ELV::getSht4xSerialNumber() {
 
 void Somo1ELV::pickHumidityRawFor0Percent() {
   if(isHumiditySensorAvailable()) {
-    uint16_t soilHumidityRaw;
+    uint32_t soilHumidityRaw;
     const ERROR err = measureSoilHumidity_raw(soilHumidityRaw);
     if (err == NO_ERROR) {
       mSoilHumCalibration.soilHumidity0percent = soilHumidityRaw;
@@ -66,7 +66,7 @@ void Somo1ELV::pickHumidityRawFor0Percent() {
 
 void Somo1ELV::pickHumidityRawFor100Percent(int16_t rawValue) {
   if(isTemperatureSensorAvailable()) {
-    uint16_t soilHumidityRaw;
+    uint32_t soilHumidityRaw;
     const ERROR err = measureSoilHumidity_raw(soilHumidityRaw);
     if (err == NO_ERROR) {
       mSoilHumCalibration.soilHumidity100percent = soilHumidityRaw;
@@ -74,18 +74,16 @@ void Somo1ELV::pickHumidityRawFor100Percent(int16_t rawValue) {
   }
 }
 
-Somo1ELV::ERROR Somo1ELV::measureSoilHumidity(humidityPercent_t& soilHumidityPercent, uint16_t* soilHumidityRaw) {
-  uint16_t soilHumidityRaw_;
+Somo1ELV::ERROR Somo1ELV::measureSoilHumidity(humidityPercent_t& soilHumidityPercent, uint32_t* soilHumidityRaw) {
+  uint32_t soilHumidityRaw_;
   if(soilHumidityRaw == nullptr) {
     soilHumidityRaw = &soilHumidityRaw_;
   }
   const ERROR err = measureSoilHumidity_raw(*soilHumidityRaw);
   if(err == NO_ERROR) {
-    if(soilHumidityPercent) {
-      const int32_t delta = mSoilHumCalibration.soilHumidity100percent - mSoilHumCalibration.soilHumidity0percent;
-      soilHumidityPercent = (delta == 0) ? 0 // avoid division by zero
-          : 100L * (static_cast<int32_t>(*soilHumidityRaw) - mSoilHumCalibration.soilHumidity0percent) / delta;
-    }
+    const int32_t delta = mSoilHumCalibration.soilHumidity100percent - mSoilHumCalibration.soilHumidity0percent;
+    soilHumidityPercent = (delta == 0) ? 0 // avoid division by zero
+        : 100L * (static_cast<int32_t>(*soilHumidityRaw) - mSoilHumCalibration.soilHumidity0percent) / delta;
   }
   return err;
 }
@@ -123,7 +121,7 @@ Somo1ELV::ERROR Somo1ELV::measureSoilTemperature_raw(sht4xTicks_t& soilTemperatu
   return TEMPERATRUR_SENSOR_NOT_AVAILABLE;
 }
 
-Somo1ELV::ERROR Somo1ELV::measureSoilHumidity_raw(uint16_t& soilHumidityRaw) {
+Somo1ELV::ERROR Somo1ELV::measureSoilHumidity_raw(uint32_t& soilHumidityRaw) {
   if(mSoilHumiditySensorAvailable) {
     const uint32_t reading = mFdc2x1x.getReading(0);
     if(reading == FDC2x1x::INVALID_READING) {
