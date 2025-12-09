@@ -85,14 +85,6 @@ public:
     mSoilHumCalibration.soilHumidity100percent = rawValue;
   }
 
-  // calibration for 0% soil humidity
-  // take the actual raw value as raw value for 0% humidity
-  void pickHumidityRawFor0Percent();
-
-  // calibration for 100% soil humidity
-  // take the actual raw value as raw value for 100% humidity
-  void pickHumidityRawFor100Percent(int16_t rawValue);
-
   // soil humidity might become negative upon wrong calibration data.
   ERROR measureSoilHumidity(humidityPercent_t& soilHumidityPercent, uint32_t* soilHumidityRaw = nullptr);
 

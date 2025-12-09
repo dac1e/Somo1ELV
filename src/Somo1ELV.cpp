@@ -54,26 +54,6 @@ uint32_t Somo1ELV::getSht4xSerialNumber() {
   return mSht4xSerialNumber;
 }
 
-void Somo1ELV::pickHumidityRawFor0Percent() {
-  if(isHumiditySensorAvailable()) {
-    uint32_t soilHumidityRaw;
-    const ERROR err = measureSoilHumidity_raw(soilHumidityRaw);
-    if (err == NO_ERROR) {
-      mSoilHumCalibration.soilHumidity0percent = soilHumidityRaw;
-    }
-  }
-}
-
-void Somo1ELV::pickHumidityRawFor100Percent(int16_t rawValue) {
-  if(isTemperatureSensorAvailable()) {
-    uint32_t soilHumidityRaw;
-    const ERROR err = measureSoilHumidity_raw(soilHumidityRaw);
-    if (err == NO_ERROR) {
-      mSoilHumCalibration.soilHumidity100percent = soilHumidityRaw;
-    }
-  }
-}
-
 Somo1ELV::ERROR Somo1ELV::measureSoilHumidity(humidityPercent_t& soilHumidityPercent, uint32_t* soilHumidityRaw) {
   uint32_t soilHumidityRaw_;
   if(soilHumidityRaw == nullptr) {
